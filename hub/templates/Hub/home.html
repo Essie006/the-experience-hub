@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Experience Hub | Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 7%;
+            background: #111;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            color: #eee;
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #d4af37;
+            color: #111;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: white;
+        }
+
+        .intro {
+            padding: 80px 7%;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #d4af37;
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            max-width: 800px;
+            margin: auto;
+            color: #ccc;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .features {
+            padding: 30px 7% 80px;
+        }
+
+        .features-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #1c1c1c;
+            padding: 35px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .feature-card h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 80px 20px;
+            background: #1c1c1c;
+        }
+
+        .cta h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080808;
+            color: #aaa;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">THE EXPERIENCE HUB</div>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/experiences/">Experiences</a></li>
+        <li><a href="/events/">Events</a></li>
+        <li><a href="/travel/">Travel</a></li>
+        <li><a href="/booking/">Booking</a></li>
+        <li><a href="/contact/">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover <span>Kenya</span></h1>
+
+        <p>
+            Explore unforgettable experiences, exciting events
+            and amazing destinations across Kenya.
+        </p>
+
+        <a href="/experiences/" class="button">
+            Explore Experiences
+        </a>
+    </div>
+</section>
+
+<section class="intro">
+
+    <h2>Welcome to The Experience Hub</h2>
+
+    <p>
+        The Experience Hub is a platform designed to help
+        people discover exciting experiences, events and
+        travel destinations across Kenya.
+    </p>
+
+</section>
+
+<section class="features">
+
+    <div class="features-container">
+
+        <div class="feature-card">
+            <h3>Experiences</h3>
+            <p>
+                Discover memorable activities and unique
+                experiences waiting for you.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Events</h3>
+            <p>
+                Find exciting events and create unforgettable
+                memories.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Travel</h3>
+            <p>
+                Explore beautiful destinations and plan your
+                next adventure across Kenya.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Ready for Your Next Adventure?</h2>
+
+    <p>
+        Start exploring Kenya and discover your next
+        unforgettable experience.
+    </p>
+
+    <a href="/booking/" class="button">
+        Book Now
+    </a>
+
+</section>
+
+<footer>
+    <p>© 2026 The Experience Hub. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

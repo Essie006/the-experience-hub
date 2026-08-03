@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book an Experience | The Experience Hub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 7%;
+            background: #111;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: #1c1c1c;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        .booking-section {
+            padding: 70px 7%;
+        }
+
+        .booking-form {
+            max-width: 700px;
+            margin: auto;
+            background: #1c1c1c;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .booking-form h2 {
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .success {
+            background: #1f6f43;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+
+        .button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 5px;
+            background: #d4af37;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080808;
+            color: #aaa;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            THE EXPERIENCE HUB
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="/">Home</a>
+            </li>
+
+            <li>
+                <a href="/about/">About</a>
+            </li>
+
+            <li>
+                <a href="/experiences/">Experiences</a>
+            </li>
+
+            <li>
+                <a href="/events/">Events</a>
+            </li>
+
+            <li>
+                <a href="/travel/">Travel</a>
+            </li>
+
+            <li>
+                <a href="/contact/">Contact</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Book Your Experience
+        </h1>
+
+        <p>
+            Fill in your details below to make a booking.
+        </p>
+
+    </section>
+
+
+    <!-- BOOKING FORM -->
+
+    <section class="booking-section">
+
+        <div class="booking-form">
+
+            {% if success %}
+
+                <div class="success">
+                    {{ success }}
+                </div>
+
+            {% endif %}
+
+
+            <h2>
+                Booking Details
+            </h2>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+
+                <label>
+                    Experience
+                </label>
+
+                <select name="experience">
+
+                    <option value="">
+                        Select an experience
+                    </option>
+
+                    {% for experience in experiences %}
+
+                        <option value="{{ experience.id }}">
+                            {{ experience.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>
+                    Event
+                </label>
+
+                <select name="event">
+
+                    <option value="">
+                        Select an event
+                    </option>
+
+                    {% for event in events %}
+
+                        <option value="{{ event.id }}">
+                            {{ event.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>
+                    Travel Destination
+                </label>
+
+                <select name="travel">
+
+                    <option value="">
+                        Select a travel destination
+                    </option>
+
+                    {% for travel in travels %}
+
+                        <option value="{{ travel.id }}">
+                            {{ travel.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Submit Booking
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 The Experience Hub.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body
