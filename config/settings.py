@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 import os
 
@@ -7,7 +6,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-change-this-in-production")
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-change-this-in-production"
+)
 
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
@@ -39,7 +41,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "hub",
 ]
 
@@ -137,4 +138,3 @@ MEDIA_ROOT = BASE_DIR / "media"
 # DEFAULT PRIMARY KEY
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-```
