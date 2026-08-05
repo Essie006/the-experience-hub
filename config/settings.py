@@ -7,15 +7,12 @@ SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     "django-insecure-change-this-in-production"
 )
+DEBUG = True
 
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get(
-        "ALLOWED_HOSTS",
-        "127.0.0.1,localhost"
-    ).split(",")
-    if host.strip()
+    "127.0.0.1",
+    "localhost",
+    "testserver",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -30,14 +27,15 @@ CSRF_TRUSTED_ORIGINS = [
 
 # APPLICATIONS
 
+
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "hub",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'hub',
 ]
 
 
@@ -117,12 +115,8 @@ USE_I18N = True
 USE_TZ = True
 
 
-# STATIC FILES
-
 STATIC_URL = "/static/"
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 
 # MEDIA FILES
 

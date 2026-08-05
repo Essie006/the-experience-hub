@@ -1,41 +1,65 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Experiences | The Experience Hub</title>
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
+
+    <title>
+        Submit an Experience | The Experience Hub
+    </title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background: #111;
+            background: #0d0d0d;
             color: white;
         }
 
-        /* NAVIGATION */
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 7%;
-            background: #111;
+            padding: 22px 7%;
+            background: #0d0d0d;
+            border-bottom: 1px solid #222;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #d4af37;
         }
 
         nav ul {
@@ -47,361 +71,562 @@
         nav a {
             color: white;
             text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
         }
 
         nav a:hover {
             color: #d4af37;
         }
 
-        /* HERO */
+        /* =========================
+           PAGE
+        ========================= */
 
-        .hero {
+        .page {
+            max-width: 850px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .header {
             text-align: center;
-            padding: 80px 20px;
-            background: #1c1c1c;
+            margin-bottom: 45px;
         }
 
-        .hero h1 {
-            font-size: 50px;
-            margin-bottom: 15px;
+        .header h1 {
+            font-size: 46px;
+            line-height: 1.2;
+            margin-bottom: 18px;
         }
 
-        .hero p {
-            color: #ccc;
-            font-size: 19px;
-        }
-
-        /* EXPERIENCES */
-
-        .experiences-section {
-            padding: 70px 7%;
-        }
-
-        .experiences-container {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
-
-            gap: 30px;
-        }
-
-        /* EXPERIENCE CARD */
-
-        .experience-card {
-            background: #1c1c1c;
-            border-radius: 12px;
-            overflow: hidden;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.4);
-
-            transition: transform 0.3s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-8px);
-        }
-
-        /* IMAGE */
-
-        .experience-image {
-            width: 100%;
-            height: 220px;
-
-            object-fit: cover;
-
-            display: block;
-        }
-
-        .no-image {
-            width: 100%;
-            height: 220px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: #333;
-            color: #aaa;
-
-            font-size: 18px;
-        }
-
-        /* CARD CONTENT */
-
-        .experience-content {
-            padding: 30px;
-        }
-
-        .experience-card h2 {
+        .header h1 span {
             color: #d4af37;
-            margin-bottom: 15px;
         }
 
-        .experience-card p {
-            color: #ccc;
+        .header p {
+            max-width: 700px;
+            margin: auto;
+            color: #aaa;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-container {
+            background: #181818;
+            border: 1px solid #292929;
+            border-radius: 14px;
+            padding: 45px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .form-section-title {
+            color: #d4af37;
+            font-size: 22px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .required {
+            color: #d4af37;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 7px;
+            background: #101010;
+            color: white;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #777;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        textarea {
+            min-height: 160px;
+            resize: vertical;
             line-height: 1.6;
-            margin-bottom: 12px;
         }
 
-        .location {
-            color: white !important;
+        input[type="number"] {
+            appearance: textfield;
         }
 
-        .price {
-            font-size: 20px;
-            font-weight: bold;
-            color: white !important;
+        input[type="file"] {
+            padding: 12px;
+            cursor: pointer;
         }
 
-        .available {
-            color: #4caf50 !important;
-            font-weight: bold;
+        /* =========================
+           INFORMATION BOX
+        ========================= */
+
+        .info-box {
+            background: #111;
+            border-left: 3px solid #d4af37;
+            padding: 18px;
+            margin-bottom: 30px;
+            color: #bbb;
+            line-height: 1.7;
+            font-size: 14px;
         }
 
-        .unavailable {
-            color: #f44336 !important;
-            font-weight: bold;
-        }
+        /* =========================
+           BUTTON
+        ========================= */
 
-        /* BOOK BUTTON */
-
-        .book-button {
-            display: inline-block;
-
-            margin-top: 15px;
-
-            padding: 12px 25px;
-
+        .button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 7px;
             background: #d4af37;
-
             color: #111;
-
-            text-decoration: none;
-
-            border-radius: 5px;
-
             font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .book-button:hover {
+        .button:hover {
             background: white;
+            transform: translateY(-2px);
         }
 
-        /* EMPTY */
+        /* =========================
+           SUCCESS
+        ========================= */
 
-        .empty {
+        .success {
+            background: #17351f;
+            border: 1px solid #2e7d46;
+            color: #b9f6c9;
+            padding: 17px;
+            border-radius: 7px;
+            margin-bottom: 30px;
             text-align: center;
-            color: #ccc;
-            font-size: 18px;
+            line-height: 1.6;
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
-
-            padding: 30px;
-
-            background: #080808;
-
-            color: #aaa;
-
-            margin-top: 50px;
+            padding: 35px;
+            margin-top: 80px;
+            background: #070707;
+            color: #888;
         }
 
-        /* MOBILE */
+        footer strong {
+            color: #d4af37;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
             nav {
                 flex-direction: column;
-                gap: 20px;
+                gap: 18px;
+                padding: 20px;
             }
 
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
             }
 
-            .hero h1 {
-                font-size: 40px;
+            .page {
+                margin: 40px auto;
+                padding: 15px;
             }
+
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVIGATION -->
 
-    <nav>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-        <div class="logo">
-            THE EXPERIENCE HUB
-        </div>
+<nav>
 
-        <ul>
+    <div class="logo">
 
-            <li>
-                <a href="/">
-                    Home
-                </a>
-            </li>
+        THE <span>EXPERIENCE HUB</span>
 
-            <li>
-                <a href="/about/">
-                    About
-                </a>
-            </li>
-
-            <li>
-                <a href="/experiences/">
-                    Experiences
-                </a>
-            </li>
-
-            <li>
-                <a href="/events/">
-                    Events
-                </a>
-            </li>
-
-            <li>
-                <a href="/travel/">
-                    Travel
-                </a>
-            </li>
-
-            <li>
-                <a href="/contact/">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-    </nav>
+    </div>
 
 
-    <!-- HERO -->
+    <ul>
 
-    <section class="hero">
+        <li>
+            <a href="/">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="/events/">
+                Events
+            </a>
+        </li>
+
+        <li>
+            <a href="/experiences/">
+                Experiences
+            </a>
+        </li>
+
+        <li>
+            <a href="/booking/">
+                Booking
+            </a>
+        </li>
+
+        <li>
+            <a href="/contact/">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<section class="page">
+
+
+    <div class="header">
 
         <h1>
-            Experiences
+
+            Submit an
+            <span>Experience</span>
+
         </h1>
 
+
         <p>
-            Discover unforgettable experiences around Kenya.
+
+            Have an experience you'd like to share
+            with The Experience Hub?
+
+            Submit your idea below.
+
+            Every submission is reviewed before
+            it becomes available publicly.
+
         </p>
 
-    </section>
+    </div>
 
 
-    <!-- EXPERIENCES -->
-
-    <section class="experiences-section">
-
-        <div class="experiences-container">
-
-            {% for experience in experiences %}
-
-                <div class="experience-card">
-
-                    <!-- EXPERIENCE IMAGE -->
-
-                    {% if experience.image %}
-
-                        <img
-                            src="{{ experience.image.url }}"
-                            alt="{{ experience.name }}"
-                            class="experience-image"
-                        >
-
-                    {% else %}
-
-                        <div class="no-image">
-                            No image available
-                        </div>
-
-                    {% endif %}
+    <div class="form-container">
 
 
-                    <!-- EXPERIENCE INFORMATION -->
+        {% if success %}
 
-                    <div class="experience-content">
+            <div class="success">
 
-                        <h2>
-                            {{ experience.name }}
-                        </h2>
+                {{ success }}
 
-                        <p>
-                            {{ experience.description }}
-                        </p>
+            </div>
 
-                        <p class="location">
-                            <strong>Location:</strong>
-                            {{ experience.location }}
-                        </p>
-
-                        <p class="price">
-                            KSh {{ experience.price }}
-                        </p>
+        {% endif %}
 
 
-                        {% if experience.available %}
+        <div class="info-box">
 
-                            <p class="available">
-                                ✓ Available
-                            </p>
+            <strong>How it works:</strong>
 
-                            <a
-                                href="{% url 'booking' %}?experience={{ experience.id }}"
-                                class="book-button"
-                            >
-                                Book Now
-                            </a>
+            Tell us about your experience.
 
-                        {% else %}
+            Your submission will remain private while
+            it is being reviewed.
 
-                            <p class="unavailable">
-                                ✕ Currently unavailable
-                            </p>
-
-                        {% endif %}
-
-                    </div>
-
-                </div>
-
-            {% empty %}
-
-                <p class="empty">
-                    No experiences are currently available.
-                </p>
-
-            {% endfor %}
+            Once approved, it can appear on
+            The Experience Hub.
 
         </div>
 
-    </section>
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
 
 
-    <!-- FOOTER -->
+            <!-- EXPERIENCE INFORMATION -->
 
-    <footer>
+            <h2 class="form-section-title">
 
-        <p>
-            © 2026 The Experience Hub.
-            All rights reserved.
-        </p>
+                Experience Information
 
-    </footer>
+            </h2>
+
+
+            <div class="form-group">
+
+                <label for="name">
+
+                    Experience Name
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Example: Sunset Rooftop Dinner"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+
+                    Experience Description
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Describe the experience and what makes it special..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="location">
+
+                    Location
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Example: Nairobi, Kenya"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="price">
+
+                    Price
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    step="0.01"
+                    min="0"
+                    placeholder="Example: 2500"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ORGANIZER INFORMATION -->
+
+            <h2 class="form-section-title">
+
+                Organizer Information
+
+            </h2>
+
+
+            <div class="form-group">
+
+                <label for="organizer_name">
+
+                    Your Name / Organization
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="organizer_name"
+                    name="organizer_name"
+                    placeholder="Your name or organization"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="organizer_email">
+
+                    Organizer Email
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="organizer_email"
+                    name="organizer_email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- IMAGE -->
+
+            <h2 class="form-section-title">
+
+                Experience Image
+
+            </h2>
+
+
+            <div class="form-group">
+
+                <label for="image">
+
+                    Upload Experience Image
+
+                </label>
+
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                >
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="button"
+            >
+
+                Submit Experience for Review
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+
+        © 2026
+        <strong>The Experience Hub</strong>.
+
+        All Rights Reserved.
+
+    </p>
+
+</footer>
+
 
 </body>
 

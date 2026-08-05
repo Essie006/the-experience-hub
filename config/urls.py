@@ -8,9 +8,10 @@ from hub.views import (
     about,
     experiences,
     events,
-    travel,
     contact,
     booking,
+    submit_event,
+    submit_experience,
 )
 
 
@@ -21,9 +22,20 @@ urlpatterns = [
     path("about/", about, name="about"),
     path("experiences/", experiences, name="experiences"),
     path("events/", events, name="events"),
-    path("travel/", travel, name="travel"),
     path("contact/", contact, name="contact"),
     path("booking/", booking, name="booking"),
+
+    path(
+        "submit-event/",
+        submit_event,
+        name="submit_event",
+    ),
+
+    path(
+        "submit-experience/",
+        submit_experience,
+        name="submit_experience",
+    ),
 ]
 
 
