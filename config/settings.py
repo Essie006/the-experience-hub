@@ -10,11 +10,10 @@ SECRET_KEY = os.environ.get(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
+    "the-experience-hub-1.onrender.com",
     "localhost",
-    "testserver",
+    "127.0.0.1",
 ]
-
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
     for origin in os.environ.get(
