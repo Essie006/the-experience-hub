@@ -3,16 +3,12 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# SECURITY
-
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     "django-insecure-change-this-in-production"
 )
 
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
