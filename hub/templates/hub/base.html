@@ -14,6 +14,10 @@
 
     <title>The Experience Hub</title>
 
+<link rel="manifest" href="{% static 'hub/manifest.json' %}">
+
+<link rel="apple-touch-icon" href="{% static 'hub/icons/experience-hub.png' %}">
+
     <link rel="stylesheet"
           href="{% static 'hub/css/style.css' %}">
 </head>
@@ -107,7 +111,17 @@
 
 </footer>
 
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register(
+            "{% static 'hub/js/service-worker.js' %}"
+        );
+    });
+}
+</script>
 </body>
 
 </html>
+
 
