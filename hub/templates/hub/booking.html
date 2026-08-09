@@ -3,302 +3,228 @@
 
 {% block content %}
 
-<title>Book The Experience Hub</title>
-
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #111;
-            color: #fff;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 30px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .intro {
-            text-align: center;
-            color: #ccc;
-            margin-bottom: 35px;
-        }
-
-        .success {
-            background: #164d27;
-            color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        form {
-            background: #1b1b1b;
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 6px;
-            background: #222;
-            color: #fff;
-            font-size: 15px;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .section-title {
-            margin-top: 30px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #444;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            background: #fff;
-            color: #111;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        .optional {
-            color: #999;
-            font-size: 13px;
-            font-weight: normal;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <h1>Book The Experience Hub</h1>
-
-    <p class="intro">
-        Book MCs, DJs, hypemen, dancers, experiences and events
-        for your next occasion.
-    </p>
-
-    {% if success %}
-        <div class="success">
-            {{ success }}
-        </div>
-    {% endif %}
-
-    <form method="POST">
-
-        {% csrf_token %}
-
-        <h2 class="section-title">Your Details</h2>
-
-        <div class="form-group">
-            <label for="name">Full Name</label>
-
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your full name"
-                required
-            >
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email Address</label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="your@email.com"
-                required
-            >
-        </div>
-
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-
-            <input
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="Your phone number"
-                required
-            >
-        </div>
-
-
-        <h2 class="section-title">Book Talent</h2>
-
-        <div class="form-group">
-            <label for="talent">
-                Choose Talent
-            </label>
-
-            <select id="talent" name="talent">
-
-                <option value="">
-                    Select a MC, DJ, Hypeman or Dancer
-                </option>
-
-                {% for talent in talents %}
-
-                    <option value="{{ talent.id }}">
-                        {{ talent.name }} -
-                        {{ talent.get_talent_type_display }}
-                        {% if talent.price %}
-                            - {{ talent.price }}
-                        {% endif %}
-                    </option>
-
-                {% endfor %}
-
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="talent_custom">
-                Other Talent
-                <span class="optional">(optional)</span>
-            </label>
-
-            <input
-                type="text"
-                id="talent_custom"
-                name="talent_custom"
-                placeholder="Example: DJ for a birthday party"
-            >
-        </div>
-
-
-        <h2 class="section-title">Book an Experience</h2>
-
-        <div class="form-group">
-            <label for="experience">
-                Choose Experience
-            </label>
-
-            <select id="experience" name="experience">
-
-                <option value="">
-                    Select an experience
-                </option>
-
-                {% for experience in experiences %}
-
-                    <option value="{{ experience.id }}">
-                        {{ experience.name }}
-                        {% if experience.price %}
-                            - {{ experience.price }}
-                        {% endif %}
-                    </option>
-
-                {% endfor %}
-
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="experience_custom">
-                Other Experience
-                <span class="optional">(optional)</span>
-            </label>
-
-            <input
-                type="text"
-                id="experience_custom"
-                name="experience_custom"
-                placeholder="Describe the experience you want"
-            >
-        </div>
-
-
-        <h2 class="section-title">Book an Event</h2>
-
-        <div class="form-group">
-            <label for="event">
-                Choose Event
-            </label>
-
-            <select id="event" name="event">
-
-                <option value="">
-                    Select an event
-                </option>
-
-                {% for event in events %}
-
-                    <option value="{{ event.id }}">
-                        {{ event.name }}
-                        {% if event.price %}
-                            - {{ event.price }}
-                        {% endif %}
-                    </option>
-
-                {% endfor %}
-
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="event_custom">
-                Other Event
-                <span class="optional">(optional)</span>
-            </label>
-
-            <input
-                type="text"
-                id="event_custom"
-                name="event_custom"
-                placeholder="Describe the event you want"
-            >
-        </div>
-
-
-        <button type="submit">
-            Submit Booking
-        </button>
-
-    </form>
-
+<h1>Book The Experience Hub</h1>
+
+<p class="intro">
+    Book MCs, DJs, hypemen, dancers, experiences and events
+    for your next occasion.
+</p>
+
+{% if success %} <div class="success">
+{{ success }} </div>
+{% endif %}
+
+<form id="bookingForm">
+
+```
+<h2 class="section-title">Your Details</h2>
+
+<div class="form-group">
+    <label for="name">Full Name</label>
+
+    <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Your full name"
+        required
+    >
 </div>
 
-</body>
-</html>
+<div class="form-group">
+    <label for="email">Email Address</label>
+
+    <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+    >
+</div>
+
+<div class="form-group">
+    <label for="phone">Phone Number</label>
+
+    <input
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Your phone number"
+        required
+    >
+</div>
+
+
+<h2 class="section-title">Book Talent</h2>
+
+<div class="form-group">
+    <label for="talent">Choose Talent</label>
+
+    <select id="talent" name="talent">
+        <option value="">
+            Select a MC, DJ, Hypeman or Dancer
+        </option>
+
+        {% for talent in talents %}
+            <option value="{{ talent.id }}">
+                {{ talent.name }} -
+                {{ talent.get_talent_type_display }}
+                {% if talent.price %}
+                    - {{ talent.price }}
+                {% endif %}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="talent_custom">
+        Other Talent
+        <span class="optional">(optional)</span>
+    </label>
+
+    <input
+        type="text"
+        id="talent_custom"
+        name="talent_custom"
+        placeholder="Example: DJ for a birthday party"
+    >
+</div>
+
+
+<h2 class="section-title">Book an Experience</h2>
+
+<div class="form-group">
+    <label for="experience">Choose Experience</label>
+
+    <select id="experience" name="experience">
+        <option value="">
+            Select an experience
+        </option>
+
+        {% for experience in experiences %}
+            <option value="{{ experience.id }}">
+                {{ experience.name }}
+                {% if experience.price %}
+                    - {{ experience.price }}
+                {% endif %}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="experience_custom">
+        Other Experience
+        <span class="optional">(optional)</span>
+    </label>
+
+    <input
+        type="text"
+        id="experience_custom"
+        name="experience_custom"
+        placeholder="Describe the experience you want"
+    >
+</div>
+
+
+<h2 class="section-title">Book an Event</h2>
+
+<div class="form-group">
+    <label for="event">Choose Event</label>
+
+    <select id="event" name="event">
+        <option value="">
+            Select an event
+        </option>
+
+        {% for event in events %}
+            <option value="{{ event.id }}">
+                {{ event.name }}
+                {% if event.price %}
+                    - {{ event.price }}
+                {% endif %}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="event_custom">
+        Other Event
+        <span class="optional">(optional)</span>
+    </label>
+
+    <input
+        type="text"
+        id="event_custom"
+        name="event_custom"
+        placeholder="Describe the event you want"
+    >
+</div>
+
+
+<button type="submit">
+    Book via WhatsApp
+</button>
+```
+
+</form>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    const talentSelect = document.getElementById("talent");
+    const talent = talentSelect.options[talentSelect.selectedIndex].text;
+
+    const talentCustom = document.getElementById("talent_custom").value;
+
+    const experienceSelect = document.getElementById("experience");
+    const experience = experienceSelect.options[experienceSelect.selectedIndex].text;
+
+    const experienceCustom = document.getElementById("experience_custom").value;
+
+    const eventSelect = document.getElementById("event");
+    const eventName = eventSelect.options[eventSelect.selectedIndex].text;
+
+    const eventCustom = document.getElementById("event_custom").value;
+
+    let message = `Hello The Experience Hub!
+
+I would like to make a booking.
+
+CUSTOMER DETAILS
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+TALENT
+${talentCustom ? talentCustom : talent}
+
+EXPERIENCE
+${experienceCustom ? experienceCustom : experience}
+
+EVENT
+${eventCustom ? eventCustom : eventName}
+
+Please let me know about availability and the booking process. Thank you!`;
+
+    const whatsappNumber = "254704090975";
+
+    const whatsappURL =
+        "https://wa.me/" + whatsappNumber +
+        "?text=" + encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+
+});
+</script>
+
 {% endblock %}
