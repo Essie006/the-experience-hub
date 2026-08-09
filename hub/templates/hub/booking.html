@@ -1,178 +1,372 @@
+@'
 {% extends "hub/base.html" %}
 {% load static %}
 
 {% block content %}
 
-<h1>Book The Experience Hub</h1>
+<section class="booking-page">
 
-<p class="intro">
-    Book MCs, DJs, hypemen, dancers, experiences and events
-    for your next occasion.
-</p>
+    <div class="booking-hero">
 
-{% if success %} <div class="success">
-{{ success }} </div>
-{% endif %}
+        <h1>
+            Book <span>The Experience Hub</span>
+        </h1>
 
-<form id="bookingForm">
+        <p>
+            Book MCs, DJs, hypemen, dancers, experiences
+            and events for your next occasion.
+        </p>
 
-```
-<h2 class="section-title">Your Details</h2>
+    </div>
 
-<div class="form-group">
-    <label for="name">Full Name</label>
+    {% if success %}
+        <div class="booking-success">
+            {{ success }}
+        </div>
+    {% endif %}
 
-    <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Your full name"
-        required
-    >
-</div>
+    <div class="booking-card">
 
-<div class="form-group">
-    <label for="email">Email Address</label>
+        <form id="bookingForm">
 
-    <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="your@email.com"
-        required
-    >
-</div>
+            {% csrf_token %}
 
-<div class="form-group">
-    <label for="phone">Phone Number</label>
+            <h2>Your Details</h2>
 
-    <input
-        type="text"
-        id="phone"
-        name="phone"
-        placeholder="Your phone number"
-        required
-    >
-</div>
+            <div class="booking-group">
+                <label for="name">Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                >
+            </div>
 
+            <div class="booking-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                >
+            </div>
 
-<h2 class="section-title">Book Talent</h2>
-
-<div class="form-group">
-    <label for="talent">Choose Talent</label>
-
-    <select id="talent" name="talent">
-        <option value="">
-            Select a MC, DJ, Hypeman or Dancer
-        </option>
-
-        {% for talent in talents %}
-            <option value="{{ talent.id }}">
-                {{ talent.name }} -
-                {{ talent.get_talent_type_display }}
-                {% if talent.price %}
-                    - {{ talent.price }}
-                {% endif %}
-            </option>
-        {% endfor %}
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="talent_custom">
-        Other Talent
-        <span class="optional">(optional)</span>
-    </label>
-
-    <input
-        type="text"
-        id="talent_custom"
-        name="talent_custom"
-        placeholder="Example: DJ for a birthday party"
-    >
-</div>
+            <div class="booking-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="Your phone number"
+                    required
+                >
+            </div>
 
 
-<h2 class="section-title">Book an Experience</h2>
+            <h2>Book Talent</h2>
 
-<div class="form-group">
-    <label for="experience">Choose Experience</label>
+            <div class="booking-group">
 
-    <select id="experience" name="experience">
-        <option value="">
-            Select an experience
-        </option>
+                <label for="talent">
+                    Choose Talent
+                </label>
 
-        {% for experience in experiences %}
-            <option value="{{ experience.id }}">
-                {{ experience.name }}
-                {% if experience.price %}
-                    - {{ experience.price }}
-                {% endif %}
-            </option>
-        {% endfor %}
-    </select>
-</div>
+                <select id="talent" name="talent">
 
-<div class="form-group">
-    <label for="experience_custom">
-        Other Experience
-        <span class="optional">(optional)</span>
-    </label>
+                    <option value="">
+                        Select a MC, DJ, Hypeman or Dancer
+                    </option>
 
-    <input
-        type="text"
-        id="experience_custom"
-        name="experience_custom"
-        placeholder="Describe the experience you want"
-    >
-</div>
+                    {% for talent in talents %}
+
+                        <option value="{{ talent.id }}">
+                            {{ talent.name }} -
+                            {{ talent.get_talent_type_display }}
+
+                            {% if talent.price %}
+                                - KSh {{ talent.price }}
+                            {% endif %}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
 
 
-<h2 class="section-title">Book an Event</h2>
+            <div class="booking-group">
 
-<div class="form-group">
-    <label for="event">Choose Event</label>
+                <label for="talent_custom">
+                    Other Talent
+                    <span>(optional)</span>
+                </label>
 
-    <select id="event" name="event">
-        <option value="">
-            Select an event
-        </option>
+                <input
+                    type="text"
+                    id="talent_custom"
+                    name="talent_custom"
+                    placeholder="Example: DJ for a birthday party"
+                >
 
-        {% for event in events %}
-            <option value="{{ event.id }}">
-                {{ event.name }}
-                {% if event.price %}
-                    - {{ event.price }}
-                {% endif %}
-            </option>
-        {% endfor %}
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="event_custom">
-        Other Event
-        <span class="optional">(optional)</span>
-    </label>
-
-    <input
-        type="text"
-        id="event_custom"
-        name="event_custom"
-        placeholder="Describe the event you want"
-    >
-</div>
+            </div>
 
 
-<button type="submit">
-    Book via WhatsApp
-</button>
-```
+            <h2>Book an Experience</h2>
 
-</form>
+            <div class="booking-group">
+
+                <label for="experience">
+                    Choose Experience
+                </label>
+
+                <select id="experience" name="experience">
+
+                    <option value="">
+                        Select an experience
+                    </option>
+
+                    {% for experience in experiences %}
+
+                        <option value="{{ experience.id }}">
+                            {{ experience.name }}
+
+                            {% if experience.price %}
+                                - KSh {{ experience.price }}
+                            {% endif %}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="booking-group">
+
+                <label for="experience_custom">
+                    Other Experience
+                    <span>(optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="experience_custom"
+                    name="experience_custom"
+                    placeholder="Describe the experience you want"
+                >
+
+            </div>
+
+
+            <h2>Book an Event</h2>
+
+            <div class="booking-group">
+
+                <label for="event">
+                    Choose Event
+                </label>
+
+                <select id="event" name="event">
+
+                    <option value="">
+                        Select an event
+                    </option>
+
+                    {% for event in events %}
+
+                        <option value="{{ event.id }}">
+                            {{ event.name }}
+
+                            {% if event.price %}
+                                - KSh {{ event.price }}
+                            {% endif %}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="booking-group">
+
+                <label for="event_custom">
+                    Other Event
+                    <span>(optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="event_custom"
+                    name="event_custom"
+                    placeholder="Describe the event you want"
+                >
+
+            </div>
+
+
+            <button type="submit" class="booking-button">
+                Book via WhatsApp
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.booking-page {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 140px 0 80px;
+}
+
+.booking-hero {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.booking-hero h1 {
+    font-size: 46px;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.booking-hero h1 span {
+    color: #facc15;
+}
+
+.booking-hero p {
+    color: #666;
+    font-size: 17px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.booking-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 45px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
+
+.booking-card h2 {
+    color: #222;
+    font-size: 22px;
+    margin: 10px 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #facc15;
+}
+
+.booking-group {
+    margin-bottom: 24px;
+}
+
+.booking-group label {
+    display: block;
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.booking-group label span {
+    color: #888;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.booking-group input,
+.booking-group select {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fafafa;
+    color: #222;
+    font-size: 15px;
+}
+
+.booking-group input:focus,
+.booking-group select:focus {
+    outline: none;
+    border-color: #facc15;
+}
+
+.booking-group input::placeholder {
+    color: #999;
+}
+
+.booking-button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #facc15;
+    color: #222;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.booking-button:hover {
+    background: #222;
+    color: #fff;
+}
+
+.booking-success {
+    background: #ecfdf3;
+    border: 1px solid #b7e4c7;
+    color: #166534;
+    padding: 15px;
+    border-radius: 7px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+
+    .booking-page {
+        padding-top: 180px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .booking-page {
+        width: 92%;
+        padding-top: 200px;
+    }
+
+    .booking-hero h1 {
+        font-size: 34px;
+    }
+
+    .booking-card {
+        padding: 25px;
+    }
+
+}
+
+</style>
+
 
 <script>
+
 document.getElementById("bookingForm").addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -181,50 +375,69 @@ document.getElementById("bookingForm").addEventListener("submit", function(event
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
 
-    const talentSelect = document.getElementById("talent");
-    const talent = talentSelect.options[talentSelect.selectedIndex].text;
-
+    const talent = document.getElementById("talent");
     const talentCustom = document.getElementById("talent_custom").value;
 
-    const experienceSelect = document.getElementById("experience");
-    const experience = experienceSelect.options[experienceSelect.selectedIndex].text;
-
+    const experience = document.getElementById("experience");
     const experienceCustom = document.getElementById("experience_custom").value;
 
     const eventSelect = document.getElementById("event");
-    const eventName = eventSelect.options[eventSelect.selectedIndex].text;
-
     const eventCustom = document.getElementById("event_custom").value;
 
-    let message = `Hello The Experience Hub!
+    let message =
+        "Hello The Experience Hub!%0A%0A" +
+        "*NEW BOOKING*%0A%0A" +
+        "*Name:* " + encodeURIComponent(name) + "%0A" +
+        "*Email:* " + encodeURIComponent(email) + "%0A" +
+        "*Phone:* " + encodeURIComponent(phone) + "%0A%0A";
 
-I would like to make a booking.
+    if (talent.value || talentCustom) {
 
-CUSTOMER DETAILS
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
+        const selectedTalent =
+            talent.value
+            ? talent.options[talent.selectedIndex].text
+            : talentCustom;
 
-TALENT
-${talentCustom ? talentCustom : talent}
+        message +=
+            "*Talent:* " +
+            encodeURIComponent(selectedTalent) +
+            "%0A";
+    }
 
-EXPERIENCE
-${experienceCustom ? experienceCustom : experience}
+    if (experience.value || experienceCustom) {
 
-EVENT
-${eventCustom ? eventCustom : eventName}
+        const selectedExperience =
+            experience.value
+            ? experience.options[experience.selectedIndex].text
+            : experienceCustom;
 
-Please let me know about availability and the booking process. Thank you!`;
+        message +=
+            "*Experience:* " +
+            encodeURIComponent(selectedExperience) +
+            "%0A";
+    }
 
-    const whatsappNumber = "254704090975";
+    if (eventSelect.value || eventCustom) {
 
-    const whatsappURL =
-        "https://wa.me/" + whatsappNumber +
-        "?text=" + encodeURIComponent(message);
+        const selectedEvent =
+            eventSelect.value
+            ? eventSelect.options[eventSelect.selectedIndex].text
+            : eventCustom;
 
-    window.open(whatsappURL, "_blank");
+        message +=
+            "*Event:* " +
+            encodeURIComponent(selectedEvent) +
+            "%0A";
+    }
+
+    window.open(
+        "https://wa.me/254704090975?text=" + message,
+        "_blank"
+    );
 
 });
+
 </script>
 
 {% endblock %}
+'@ | Set-Content -Encoding utf8 hub\templates\hub\booking.html
