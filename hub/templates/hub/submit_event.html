@@ -1,0 +1,90 @@
+{% extends "hub/base.html" %}
+
+{% block content %}
+
+<section class="services">
+
+    <div class="title">
+        <h2>Submit Your Event</h2>
+        <p>
+            Fill in the details below. After approval, your event will appear on The Experience Hub.
+        </p>
+    </div>
+
+    {% if success %}
+    <div style="
+        max-width:700px;
+        margin:20px auto;
+        padding:20px;
+        background:#dcfce7;
+        color:#166534;
+        border-radius:12px;
+        text-align:center;
+        font-weight:bold;
+    ">
+        {{ success }}
+    </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" class="submit-form">
+
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Event Name" required>
+
+        <textarea name="description" rows="5" placeholder="Description" required></textarea>
+
+        <input type="text" name="location" placeholder="Location" required>
+
+        <input type="date" name="date" required>
+
+        <input type="number" step="0.01" name="price" placeholder="Ticket Price">
+
+        <input type="text" name="organizer_name" placeholder="Organizer Name" required>
+
+        <input type="email" name="organizer_email" placeholder="Organizer Email" required>
+
+        <label>Upload Event Poster</label>
+
+        <input type="file" name="image">
+
+        <button type="submit" class="btn">
+            Submit Event
+        </button>
+
+    </form>
+
+</section>
+
+<style>
+
+.submit-form{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.submit-form input,
+.submit-form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.submit-form textarea{
+    resize:vertical;
+}
+
+.submit-form button{
+    width:100%;
+}
+
+</style>
+
+{% endblock %}

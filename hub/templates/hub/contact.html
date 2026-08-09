@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "hub/base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block content %}
 
-    <title>Contact | The Experience Hub</title>
+<title>Contact | The Experience Hub</title>
 
-    <style>
-
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -154,7 +151,7 @@
             </li>
 
             <li>
-                <a href="/travel/">Travel</a>
+                <a href="/collections/">Travel</a>
             </li>
 
             <li>
@@ -215,44 +212,37 @@
 
 
             <div class="contact-item">
+    <h3>Bookings & Inquiries</h3>
 
-                <h3>
-                    📞 Phone
-                </h3>
+    <p>
+        For bookings and inquiries, reach out to us through any of the
+        platforms below.
+    </p>
 
-                <p>
-                    +254 700 000 000
-                </p>
+    <p>
+        📞 Phone:
+        <a href="tel:+254704090975"
+           style="color: #d4af37; text-decoration: none;">
+            +254 704 090 975
+        </a>
+    </p>
 
-            </div>
+    <p>
+        💬 WhatsApp:
+        <a href="https://wa.me/254704090975"
+           target="_blank"
+           style="color: #d4af37; text-decoration: none;">
+            +254 704 090 975
+        </a>
+    </p>
 
-
-            <div class="contact-item">
-
-                <h3>
-                    🕒 Opening Hours
-                </h3>
-
-                <p>
-                    Monday - Saturday: 8:00 AM - 6:00 PM
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-
-        <p>
-            © 2026 The Experience Hub.
-            All Rights Reserved.
-        </p>
-
-    </footer>
-
-</body>
-
-</html>
+    <p>
+        📸 Instagram:
+        <a href="https://www.instagram.com/theexperiencehubke_/"
+           target="_blank"
+           style="color: #d4af37; text-decoration: none;">
+            @theexperiencehubke_
+        </a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'hub/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="collections-page">
+
+    <div class="collections-header">
+
+        <span class="collections-tag">EXPERIENCE HUB</span>
+
+        <h1>
+            Signature <span>Collection</span>
+        </h1>
+
+        <p>
+            Discover official Experience Hub pieces designed to represent
+            the lifestyle, energy and experiences we stand for.
+        </p>
+
+    </div>
+
+    <div class="product-grid">
+
+        {% for item in collection %}
+
+        <div class="product-card">
+
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            {% endif %}
+
+            <div class="product-info">
+
+                <h3>{{ item.name }}</h3>
+
+                {% if item.description %}
+                    <p>{{ item.description }}</p>
+                {% endif %}
+
+                <strong>GHC {{ item.price }}</strong>
+
+                <a href="{% url 'booking' %}" class="btn">
+                    Shop Now
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-collection">
+            <h2>Collection Coming Soon</h2>
+            <p>Our latest Experience Hub pieces will appear here soon.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

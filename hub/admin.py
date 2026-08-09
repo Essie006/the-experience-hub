@@ -7,6 +7,7 @@ from .models import (
     Booking,
     EventSubmission,
     ExperienceSubmission,
+    CollectionItem,
 )
 
 
@@ -145,3 +146,26 @@ class ExperienceSubmissionAdmin(admin.ModelAdmin):
         "organizer_email",
     )
 
+
+@admin.register(CollectionItem)
+class CollectionItemAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "category",
+        "colour",
+        "size",
+        "price",
+        "available",
+    )
+
+    list_filter = (
+        "category",
+        "colour",
+        "size",
+        "available",
+    )
+
+    search_fields = (
+        "name",
+        "description",
+    )
