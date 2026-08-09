@@ -4,9 +4,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "your-secret-key"
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["the-experience-hub.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
