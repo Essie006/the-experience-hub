@@ -1,40 +1,179 @@
-@'
-{% extends "hub/base.html" %}
+﻿{% extends "hub/base.html" %}
 {% load static %}
 
 {% block content %}
+<div class="booking-page">
 
-<section class="booking-page">
+<style>
+    .booking-page {
+        max-width: 850px;
+        margin: 70px auto;
+        padding: 20px;
+    }
 
-    <div class="booking-hero">
+    .booking-header {
+        text-align: center;
+        margin-bottom: 45px;
+    }
+
+    .booking-header h1 {
+        font-size: 46px;
+        line-height: 1.2;
+        margin-bottom: 18px;
+        color: #ffffff;
+    }
+
+    .booking-header h1 span {
+        color: #facc15;
+    }
+
+    .booking-header p {
+        max-width: 700px;
+        margin: auto;
+        color: #aaa;
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .booking-container {
+        background: #181818;
+        border: 1px solid #292929;
+        border-radius: 14px;
+        padding: 45px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .booking-section-title {
+        color: #facc15;
+        font-size: 22px;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #292929;
+    }
+
+    .booking-form-group {
+        margin-bottom: 24px;
+    }
+
+    .booking-form-group label {
+        display: block;
+        margin-bottom: 9px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .booking-form-group input,
+    .booking-form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #333;
+        border-radius: 7px;
+        background: #101010;
+        color: #ffffff;
+        font-size: 15px;
+        font-family: Arial, sans-serif;
+    }
+
+    .booking-form-group input::placeholder,
+    .booking-form-group textarea::placeholder {
+        color: #777;
+    }
+
+    .booking-form-group input:focus,
+    .booking-form-group textarea:focus {
+        outline: none;
+        border-color: #facc15;
+    }
+
+    .booking-form-group textarea {
+        min-height: 130px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    .booking-info {
+        background: #111111;
+        border-left: 3px solid #facc15;
+        padding: 18px;
+        margin-bottom: 30px;
+        color: #bbb;
+        line-height: 1.7;
+        font-size: 14px;
+    }
+
+    .booking-info strong {
+        color: #ffffff;
+    }
+
+    .booking-button {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        border-radius: 7px;
+        background: #facc15;
+        color: #111111;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .booking-button:hover {
+        background: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 700px) {
+        .booking-page {
+            margin: 40px auto;
+            padding: 15px;
+        }
+
+        .booking-header h1 {
+            font-size: 36px;
+        }
+
+        .booking-header p {
+            font-size: 16px;
+        }
+
+        .booking-container {
+            padding: 25px;
+        }
+    }
+</style>
+
+<div class="booking-page">
+
+    <div class="booking-header">
 
         <h1>
-            Book <span>The Experience Hub</span>
+            Book The
+            <span>Experience Hub</span>
         </h1>
 
         <p>
-            Book MCs, DJs, hypemen, dancers, experiences
-            and events for your next occasion.
+            Tell us what you need for your event, celebration or special occasion.
+            We will contact you through WhatsApp to discuss the details.
         </p>
 
     </div>
 
-    {% if success %}
-        <div class="booking-success">
-            {{ success }}
-        </div>
-    {% endif %}
 
-    <div class="booking-card">
+    <div class="booking-container">
 
         <form id="bookingForm">
 
-            {% csrf_token %}
+            <h2 class="booking-section-title">
+                Your Details
+            </h2>
 
-            <h2>Your Details</h2>
+            <div class="booking-form-group">
+                <label for="name">
+                    Full Name
+                </label>
 
-            <div class="booking-group">
-                <label for="name">Full Name</label>
                 <input
                     type="text"
                     id="name"
@@ -44,8 +183,12 @@
                 >
             </div>
 
-            <div class="booking-group">
-                <label for="email">Email Address</label>
+
+            <div class="booking-form-group">
+                <label for="email">
+                    Email Address
+                </label>
+
                 <input
                     type="email"
                     id="email"
@@ -55,8 +198,12 @@
                 >
             </div>
 
-            <div class="booking-group">
-                <label for="phone">Phone Number</label>
+
+            <div class="booking-form-group">
+                <label for="phone">
+                    Phone Number
+                </label>
+
                 <input
                     type="text"
                     id="phone"
@@ -65,154 +212,115 @@
                     required
                 >
             </div>
+            <div class="booking-form-group">
+    <label for="location">
+        Event Location
+    </label>
+
+    <input
+        type="text"
+        id="location"
+        name="location"
+        placeholder="Example: Westlands, Nairobi"
+        required
+    >
+</div>
 
 
-            <h2>Book Talent</h2>
+            <h2 class="booking-section-title">
+                Entertainment
+            </h2>
 
-            <div class="booking-group">
+            <div class="booking-info">
+                <strong>What does Entertainment mean?</strong><br>
+                People you would like to perform or entertain at your event,
+                such as an MC, DJ, hypeman, dancer or other performer.
+            </div>
 
-                <label for="talent">
-                    Choose Talent
+            <div class="booking-form-group">
+                <label for="entertainment">
+                    What entertainment do you need?
                 </label>
 
-                <select id="talent" name="talent">
-
-                    <option value="">
-                        Select a MC, DJ, Hypeman or Dancer
-                    </option>
-
-                    {% for talent in talents %}
-
-                        <option value="{{ talent.id }}">
-                            {{ talent.name }} -
-                            {{ talent.get_talent_type_display }}
-
-                            {% if talent.price %}
-                                - KSh {{ talent.price }}
-                            {% endif %}
-                        </option>
-
-                    {% endfor %}
-
-                </select>
-
+                <textarea
+                    id="entertainment"
+                    name="entertainment"
+                    placeholder="Example: I need a DJ and MC for my birthday party."
+                ></textarea>
             </div>
 
 
-            <div class="booking-group">
+            <h2 class="booking-section-title">
+    Experience
+</h2>
 
-                <label for="talent_custom">
-                    Other Talent
-                    <span>(optional)</span>
-                </label>
+<div class="booking-info">
+    <strong>Experience — an activity or special experience</strong><br>
+    Choose this when you want to arrange an activity or memorable
+    experience for yourself, your friends, family or guests.
+</div>
 
-                <input
-                    type="text"
-                    id="talent_custom"
-                    name="talent_custom"
-                    placeholder="Example: DJ for a birthday party"
-                >
+<div class="booking-form-group">
+    <label for="experience">
+        Tell us what experience you want
+    </label>
 
-            </div>
+    <textarea
+        id="experience"
+        name="experience"
+        placeholder="Example: I would like a sunset rooftop dinner for 10 people."
+    ></textarea>
+</div>
 
+  <h2 class="booking-section-title">
+    Event
+</h2>
 
-            <h2>Book an Experience</h2>
+<div class="booking-info">
+    <strong>Event — the occasion you are planning</strong><br>
+    Choose this when you are planning an occasion such as a wedding,
+    birthday, graduation, corporate event, party or other celebration.
+</div>
 
-            <div class="booking-group">
+<div class="booking-form-group">
+    <label for="event">
+        Tell us about your event
+    </label>
 
-                <label for="experience">
-                    Choose Experience
-                </label>
+    <textarea
+        id="event"
+        name="event"
+        placeholder="Example: Birthday party for 50 guests on 20 September in Nairobi."
+    ></textarea>
+</div>
 
-                <select id="experience" name="experience">
+            <h2 class="booking-section-title">
+    Entertainment
+</h2>
 
-                    <option value="">
-                        Select an experience
-                    </option>
+<div class="booking-info">
+    <strong>Entertainment — people you want at your event</strong><br>
+    Choose this when you need someone to entertain or perform,
+    such as an MC, DJ, hypeman, dancer or another performer.
+</div>
 
-                    {% for experience in experiences %}
+<div class="booking-form-group">
+    <label for="entertainment">
+        Tell us what you need
+    </label>
 
-                        <option value="{{ experience.id }}">
-                            {{ experience.name }}
+    <textarea
+        id="entertainment"
+        name="entertainment"
+        placeholder="Example: I need a DJ, MC and dancer for my birthday party."
+    ></textarea>
+</div>
 
-                            {% if experience.price %}
-                                - KSh {{ experience.price }}
-                            {% endif %}
-                        </option>
-
-                    {% endfor %}
-
-                </select>
-
-            </div>
-
-
-            <div class="booking-group">
-
-                <label for="experience_custom">
-                    Other Experience
-                    <span>(optional)</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="experience_custom"
-                    name="experience_custom"
-                    placeholder="Describe the experience you want"
-                >
-
-            </div>
-
-
-            <h2>Book an Event</h2>
-
-            <div class="booking-group">
-
-                <label for="event">
-                    Choose Event
-                </label>
-
-                <select id="event" name="event">
-
-                    <option value="">
-                        Select an event
-                    </option>
-
-                    {% for event in events %}
-
-                        <option value="{{ event.id }}">
-                            {{ event.name }}
-
-                            {% if event.price %}
-                                - KSh {{ event.price }}
-                            {% endif %}
-                        </option>
-
-                    {% endfor %}
-
-                </select>
-
-            </div>
-
-
-            <div class="booking-group">
-
-                <label for="event_custom">
-                    Other Event
-                    <span>(optional)</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="event_custom"
-                    name="event_custom"
-                    placeholder="Describe the event you want"
-                >
-
-            </div>
-
-
-            <button type="submit" class="booking-button">
+            <button
+                type="button"
+                class="booking-button"
+                onclick="sendBookingToWhatsApp()"
+            >
                 Book via WhatsApp
             </button>
 
@@ -220,224 +328,179 @@
 
     </div>
 
-</section>
+</div>
+<script>
+function sendBookingToWhatsApp() {
 
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const location = document.getElementById("location").value.trim();
+
+    const entertainment = document.getElementById("entertainment").value.trim();
+    const experience = document.getElementById("experience").value.trim();
+    const event = document.getElementById("event").value.trim();
+
+    if (!name || !email || !phone || !location) {
+        alert("Please fill in your name, email, phone number and event location.");
+        return;
+    }
+
+    if (!entertainment && !experience && !event) {
+        alert("Please tell us what you would like to book.");
+        return;
+    }
+
+    let message =
+        "Hello The Experience Hub!%0A%0A" +
+        "*NEW BOOKING REQUEST*%0A%0A" +
+
+        "*CUSTOMER DETAILS*%0A" +
+        "Name: " + encodeURIComponent(name) + "%0A" +
+        "Email: " + encodeURIComponent(email) + "%0A" +
+        "Phone: " + encodeURIComponent(phone) + "%0A" +
+        "Location: " + encodeURIComponent(location) + "%0A%0A";
+
+    if (entertainment) {
+        message +=
+            "*ENTERTAINMENT*%0A" +
+            encodeURIComponent(entertainment) + "%0A%0A";
+    }
+
+    if (experience) {
+        message +=
+            "*EXPERIENCE*%0A" +
+            encodeURIComponent(experience) + "%0A%0A";
+    }
+
+    if (event) {
+        message +=
+            "*EVENT*%0A" +
+            encodeURIComponent(event) + "%0A%0A";
+    }
+
+    message +=
+        "Please contact me to discuss the booking details.";
+
+    const whatsappNumber = "254704090975";
+
+    const whatsappURL =
+        "https://wa.me/" + whatsappNumber + "?text=" + message;
+
+    window.open(whatsappURL, "_blank");
+}
+</script>
+</div>
 
 <style>
-
 .booking-page {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 140px 0 80px;
+    background: #0d0d0d;
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 100px 5% 80px;
 }
 
-.booking-hero {
+.booking-page > p {
+    max-width: 850px;
+    margin: 0 auto 35px;
     text-align: center;
-    margin-bottom: 45px;
-}
-
-.booking-hero h1 {
-    font-size: 46px;
-    color: #222;
-    margin-bottom: 15px;
-}
-
-.booking-hero h1 span {
-    color: #facc15;
-}
-
-.booking-hero p {
-    color: #666;
+    color: #aaaaaa;
     font-size: 17px;
-    max-width: 700px;
-    margin: auto;
+    line-height: 1.8;
 }
 
-.booking-card {
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px;
+.booking-page form {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #181818;
+    border: 1px solid #292929;
+    border-radius: 14px;
     padding: 45px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
-.booking-card h2 {
-    color: #222;
+.booking-page .form-section-title {
+    color: #facc15;
     font-size: 22px;
-    margin: 10px 0 25px;
+    margin: 30px 0 25px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #facc15;
+    border-bottom: 1px solid #292929;
 }
 
-.booking-group {
+.booking-page .form-group {
     margin-bottom: 24px;
 }
 
-.booking-group label {
+.booking-page label {
     display: block;
-    color: #222;
-    font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
+    font-weight: bold;
+    color: #ffffff;
 }
 
-.booking-group label span {
-    color: #888;
-    font-weight: normal;
-    font-size: 13px;
-}
-
-.booking-group input,
-.booking-group select {
+.booking-page input,
+.booking-page textarea {
     width: 100%;
-    padding: 14px 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: #fafafa;
-    color: #222;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 7px;
+    background: #101010;
+    color: #ffffff;
     font-size: 15px;
 }
 
-.booking-group input:focus,
-.booking-group select:focus {
+.booking-page textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.booking-page input:focus,
+.booking-page textarea:focus {
     outline: none;
     border-color: #facc15;
 }
 
-.booking-group input::placeholder {
-    color: #999;
+.booking-page .info-box {
+    background: #111111;
+    border-left: 3px solid #facc15;
+    padding: 18px;
+    margin-bottom: 25px;
+    color: #bbbbbb;
+    line-height: 1.7;
 }
 
-.booking-button {
+.booking-page .info-box strong {
+    color: #facc15;
+}
+
+.booking-page .button {
     width: 100%;
     padding: 16px;
-    margin-top: 10px;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     background: #facc15;
-    color: #222;
-    font-weight: 800;
+    color: #111111;
+    font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.25s;
+    transition: 0.3s;
 }
 
-.booking-button:hover {
-    background: #222;
-    color: #fff;
+.booking-page .button:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
 }
 
-.booking-success {
-    background: #ecfdf3;
-    border: 1px solid #b7e4c7;
-    color: #166534;
-    padding: 15px;
-    border-radius: 7px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-@media (max-width: 900px) {
-
+@media (max-width: 700px) {
     .booking-page {
-        padding-top: 180px;
+        padding: 80px 15px 50px;
     }
 
-}
-
-@media (max-width: 600px) {
-
-    .booking-page {
-        width: 92%;
-        padding-top: 200px;
-    }
-
-    .booking-hero h1 {
-        font-size: 34px;
-    }
-
-    .booking-card {
+    .booking-page form {
         padding: 25px;
     }
-
 }
-
 </style>
-
-
-<script>
-
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-
-    const talent = document.getElementById("talent");
-    const talentCustom = document.getElementById("talent_custom").value;
-
-    const experience = document.getElementById("experience");
-    const experienceCustom = document.getElementById("experience_custom").value;
-
-    const eventSelect = document.getElementById("event");
-    const eventCustom = document.getElementById("event_custom").value;
-
-    let message =
-        "Hello The Experience Hub!%0A%0A" +
-        "*NEW BOOKING*%0A%0A" +
-        "*Name:* " + encodeURIComponent(name) + "%0A" +
-        "*Email:* " + encodeURIComponent(email) + "%0A" +
-        "*Phone:* " + encodeURIComponent(phone) + "%0A%0A";
-
-    if (talent.value || talentCustom) {
-
-        const selectedTalent =
-            talent.value
-            ? talent.options[talent.selectedIndex].text
-            : talentCustom;
-
-        message +=
-            "*Talent:* " +
-            encodeURIComponent(selectedTalent) +
-            "%0A";
-    }
-
-    if (experience.value || experienceCustom) {
-
-        const selectedExperience =
-            experience.value
-            ? experience.options[experience.selectedIndex].text
-            : experienceCustom;
-
-        message +=
-            "*Experience:* " +
-            encodeURIComponent(selectedExperience) +
-            "%0A";
-    }
-
-    if (eventSelect.value || eventCustom) {
-
-        const selectedEvent =
-            eventSelect.value
-            ? eventSelect.options[eventSelect.selectedIndex].text
-            : eventCustom;
-
-        message +=
-            "*Event:* " +
-            encodeURIComponent(selectedEvent) +
-            "%0A";
-    }
-
-    window.open(
-        "https://wa.me/254704090975?text=" + message,
-        "_blank"
-    );
-
-});
-
-</script>
 
 {% endblock %}
 '@ | Set-Content -Encoding utf8 hub\templates\hub\booking.html

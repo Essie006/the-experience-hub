@@ -1611,3 +1611,115 @@ body .navbar .nav-links a:hover {
         height: 280px;
     }
 }
+/* ==============================
+   EXPERIENCE HUB FOOTER
+============================== */
+
+.site-footer {
+    background: #070707;
+    color: #aaa;
+    margin-top: 80px;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 0 45px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+.footer-logo {
+    display: inline-block;
+    color: #ffffff !important;
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+}
+
+.footer-logo span {
+    color: #facc15;
+}
+
+.footer-brand p {
+    max-width: 380px;
+    color: #888;
+    line-height: 1.7;
+}
+
+.footer-links h3,
+.footer-contact h3 {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: #999;
+    transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: #facc15;
+}
+
+.footer-contact p {
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.footer-button {
+    display: inline-block;
+    background: #facc15;
+    color: #111 !important;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.footer-button:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+    text-align: center;
+    padding: 22px 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.footer-bottom strong {
+    color: #facc15;
+}
+
+
+/* MOBILE FOOTER */
+
+@media (max-width: 700px) {
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 45px 0 35px;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+
+}
