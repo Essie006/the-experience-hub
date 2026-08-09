@@ -6,7 +6,9 @@ SECRET_KEY = "your-secret-key"
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["the-experience-hub.onrender.com"]
+ALLOWED_HOSTS = ["the-experience-hub-1.onrender.com"]
+
+CSRF_TRUSTED_ORIGINS = ["https://the-experience-hub-1.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
